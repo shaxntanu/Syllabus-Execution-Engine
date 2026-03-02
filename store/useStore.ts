@@ -151,14 +151,49 @@ export const useStore = create<AppState>()(
       importBackup: (data) => {
         try {
           const parsed = JSON.parse(data);
-          if (parsed.subjects && Array.isArray(parsed.subjects)) {
-            set({
-              subjects: parsed.subjects,
-              dailyProgress: parsed.dailyProgress || {},
-              filter: parsed.filter || "all",
-              focusMode: false,
-            });
+          
+          // Handle both old and new backup formats
+          let subjects, dailyProgress, filter, focusMode;
+          
+          if (parsed.version && parsed.appState) {
+            // New format with complete state
+            subjects = parsed.appState.subjects;
+            dailyProgress = parsed.appState.dailyProgress || {};
+            filter = parsed.appState.filter || "all";
+            focusMode = parsed.appState.focusMode || false;
+          } else if (parsed.subjects) {
+            // Old format - backward compatibility
+            subjects = parsed.subjects;
+            dailyProgress = parsed.dailyProgress || {};
+            filter = parsed.filter || "all";
+            focusMode = false;
+          } else {
+            throw new Error("Invalid backup format");
           }
+
+          // Validate subjects structure
+          if (!Array.isArray(subjects)) {
+            throw new Error("Invalid subjects data");
+          }
+
+          // Ensure all topics have required properties
+          const validatedSubjects = subjects.map(subject => ({
+            ...subject,
+            topics: subject.topics.map(topic => ({
+              id: topic.id || `topic-${Date.now()}-${Math.random()}`,
+              name: topic.name || "Unnamed Topic",
+              done: Boolean(topic.done),
+              weak: Boolean(topic.weak),
+              priority: topic.priority || "medium"
+            }))
+          }));
+
+          set({
+            subjects: validatedSubjects,
+            dailyProgress,
+            filter,
+            focusMode: false, // Always reset focus mode on import
+          });
         } catch (error) {
           console.error("Invalid backup data", error);
           throw new Error("Invalid backup format");

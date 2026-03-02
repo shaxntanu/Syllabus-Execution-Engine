@@ -16,18 +16,41 @@ export default function BackupPanel() {
       .map((s) => ({ name: s.name, urgency: calculateUrgencyScore(s) }))
       .sort((a, b) => b.urgency - a.urgency);
 
+    // Get current filter state from store
+    const currentFilter = useStore.getState().filter;
+    const currentFocusMode = useStore.getState().focusMode;
+
     const backup = {
+      version: "1.0",
       timestamp: new Date().toISOString(),
-      overallProgress,
-      urgencyRanking,
-      subjects,
-      dailyProgress,
-      filter: "all",
+      metadata: {
+        overallProgress,
+        urgencyRanking,
+        totalTopics: subjects.reduce((sum, s) => sum + s.topics.length, 0),
+        completedTopics: subjects.reduce((sum, s) => sum + s.topics.filter(t => t.done).length, 0),
+        weakTopics: subjects.reduce((sum, s) => sum + s.topics.filter(t => t.weak).length, 0),
+        highPriorityTopics: subjects.reduce((sum, s) => sum + s.topics.filter(t => t.priority === "high").length, 0)
+      },
+      appState: {
+        subjects: subjects.map(subject => ({
+          ...subject,
+          topics: subject.topics.map(topic => ({
+            id: topic.id,
+            name: topic.name,
+            done: topic.done,
+            weak: topic.weak,
+            priority: topic.priority
+          }))
+        })),
+        dailyProgress,
+        filter: currentFilter,
+        focusMode: currentFocusMode
+      }
     };
 
     const json = JSON.stringify(backup, null, 2);
     navigator.clipboard.writeText(json);
-    setSuccess("Backup copied to clipboard!");
+    setSuccess("Complete backup copied to clipboard!");
     setTimeout(() => setSuccess(""), 3000);
   };
 
@@ -36,11 +59,12 @@ export default function BackupPanel() {
       setError("");
       setSuccess("");
       importBackup(importText);
-      setSuccess("Backup imported successfully!");
+      setSuccess("Complete backup imported successfully! All data restored.");
       setImportText("");
-      setTimeout(() => setSuccess(""), 3000);
+      setTimeout(() => setSuccess(""), 4000);
     } catch (err) {
-      setError("Invalid backup format. Please check your JSON.");
+      setError(`Import failed: ${err instanceof Error ? err.message : "Invalid backup format"}`);
+      setTimeout(() => setError(""), 5000);
     }
   };
 
@@ -61,9 +85,9 @@ export default function BackupPanel() {
           <textarea
             value={importText}
             onChange={(e) => setImportText(e.target.value)}
-            placeholder="Paste backup JSON here..."
+            placeholder="Paste your complete backup JSON here... (includes all topics, priorities, weak flags, completion status, and daily progress)"
             className="w-full bg-gray-700 text-gray-200 rounded-lg p-4 border border-gray-600 focus:border-blue-500 focus:outline-none font-mono text-sm"
-            rows={4}
+            rows={5}
           />
         </div>
 
