@@ -12,6 +12,11 @@ const initialSubjects: Subject[] = [
     topics: [
       { id: "ode", name: "Ordinary differential equations", done: false, weak: false, priority: "medium" },
       { id: "laplace", name: "Laplace transformations", done: false, weak: false, priority: "high" },
+      { id: "tutorial1", name: "Tutorial 1", done: false, weak: false, priority: "medium" },
+      { id: "tutorial2", name: "Tutorial 2", done: false, weak: false, priority: "medium" },
+      { id: "tutorial3", name: "Tutorial 3", done: false, weak: false, priority: "medium" },
+      { id: "tutorial4", name: "Tutorial 4", done: false, weak: false, priority: "medium" },
+      { id: "tutorial5", name: "Tutorial 5", done: false, weak: false, priority: "medium" },
     ],
   },
   {
