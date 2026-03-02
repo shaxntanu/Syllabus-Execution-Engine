@@ -23,13 +23,13 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
   });
 
   return (
-    <div className="bg-gray-800/50 backdrop-blur rounded-3xl p-8 md:p-10 border border-gray-700 hover:border-gray-600 transition-colors">
-      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6 mb-8">
+    <div className="bg-gray-800/50 backdrop-blur rounded-3xl p-12 border border-gray-700 hover:border-gray-600 transition-colors">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-8 mb-10">
         <div className="flex-1">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-4 mb-6">
             <h2 className="text-2xl md:text-3xl font-bold text-white">{subject.name}</h2>
             {highRisk && (
-              <span className="bg-red-500 text-white px-3 py-1.5 rounded-xl text-xs font-bold">
+              <span className="bg-red-500 text-white px-4 py-2 rounded-xl text-xs font-bold">
                 ⚠ HIGH RISK
               </span>
             )}
@@ -45,8 +45,8 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
         </div>
       </div>
 
-      <div className="mb-8">
-        <div className="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
+      <div className="mb-10">
+        <div className="w-full bg-gray-700 rounded-full h-4 overflow-hidden">
           <div
             className="bg-gradient-to-r from-blue-500 to-purple-500 h-full transition-all duration-500"
             style={{ width: `${progress}%` }}
@@ -54,7 +54,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         {filteredTopics.map((topic) => (
           <TopicRow
             key={topic.id}
@@ -65,7 +65,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
           />
         ))}
         {filteredTopics.length === 0 && (
-          <div className="text-center text-gray-500 py-8 text-sm">
+          <div className="text-center text-gray-500 py-12 text-sm">
             No topics match the current filter
           </div>
         )}
