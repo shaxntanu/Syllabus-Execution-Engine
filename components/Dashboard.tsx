@@ -19,15 +19,15 @@ export default function Dashboard() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-900 flex flex-col">
-      <div className="flex-1 p-6 md:p-10 lg:p-12">
-        <div className="max-w-5xl mx-auto">
-          <header className="text-center mb-12">
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+      <div className="w-full max-w-none px-6 md:px-10 lg:px-12 py-6 md:py-10 lg:py-12">
+        <div className="flex flex-col items-center w-full">
+          <header className="text-center mb-12 w-full">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">⚔️ Exam War Engine</h1>
             <p className="text-gray-400 text-lg">Strategic exam preparation system</p>
           </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 w-full max-w-6xl">
             <div className="bg-gray-800/50 backdrop-blur rounded-2xl p-8 border border-gray-700">
               <div className="flex justify-between items-start mb-4">
                 <div>
@@ -59,7 +59,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-3 mb-10">
+          <div className="flex flex-wrap justify-center gap-3 mb-10 w-full">
             <Filters />
             <button
               onClick={() => setFocusMode(true)}
@@ -69,13 +69,13 @@ export default function Dashboard() {
             </button>
           </div>
 
-          <div className="space-y-6 max-w-4xl mx-auto">
+          <div className="space-y-6 w-full max-w-6xl">
             {subjects.map((subject) => (
               <SubjectCard key={subject.id} subject={subject} />
             ))}
           </div>
 
-          <div className="mt-12 max-w-2xl mx-auto">
+          <div className="mt-12 w-full max-w-3xl">
             <BackupPanel />
           </div>
         </div>
