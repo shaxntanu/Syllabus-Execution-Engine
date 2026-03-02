@@ -1,6 +1,8 @@
-# ⚔️ Exam War Engine
+# ⚔️ Exam War Engine (Syllabus Execution Engine)
 
 A production-ready strategic exam preparation dashboard built with Next.js, TypeScript, and Tailwind CSS.
+
+Syllabus Tracker for Second Semester - Transform your exam preparation into a strategic execution plan.
 
 ## Features
 
@@ -72,6 +74,12 @@ exam-war-engine/
 5. **Enter Critical Mode**: Focus on the most urgent subject
 6. **Backup progress**: Generate and copy backup code
 7. **Import backup**: Paste backup JSON to restore progress
+
+## Deploy on Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/shaxntanu/Syllabus-Execution-Engine)
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com).
 
 ## Build for Production
 
