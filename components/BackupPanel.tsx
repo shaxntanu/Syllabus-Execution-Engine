@@ -45,10 +45,10 @@ export default function BackupPanel() {
   };
 
   return (
-    <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-      <h3 className="text-xl font-bold text-white mb-4">💾 Backup & Restore</h3>
+    <div className="bg-gray-800/50 backdrop-blur rounded-2xl p-8 border border-gray-700">
+      <h3 className="text-xl font-bold text-white mb-6">💾 Backup & Restore</h3>
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         <button
           onClick={generateBackup}
           className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 rounded-lg transition-colors"
@@ -57,12 +57,12 @@ export default function BackupPanel() {
         </button>
 
         <div>
-          <label className="block text-sm text-gray-400 mb-2">Import Backup</label>
+          <label className="block text-sm text-gray-400 mb-3">Import Backup</label>
           <textarea
             value={importText}
             onChange={(e) => setImportText(e.target.value)}
             placeholder="Paste backup JSON here..."
-            className="w-full bg-gray-700 text-gray-200 rounded-lg p-3 border border-gray-600 focus:border-blue-500 focus:outline-none font-mono text-sm"
+            className="w-full bg-gray-700 text-gray-200 rounded-lg p-4 border border-gray-600 focus:border-blue-500 focus:outline-none font-mono text-sm"
             rows={4}
           />
         </div>

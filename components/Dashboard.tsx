@@ -5,6 +5,7 @@ import { calculateOverallProgress, getNextExam } from "@/utils/calculations";
 import SubjectCard from "./SubjectCard";
 import Filters from "./Filters";
 import CountdownTimer from "./CountdownTimer";
+import BackupPanel from "./BackupPanel";
 
 export default function Dashboard() {
   const { subjects, setFocusMode } = useStore();
@@ -71,6 +72,10 @@ export default function Dashboard() {
           {subjects.map((subject) => (
             <SubjectCard key={subject.id} subject={subject} />
           ))}
+        </div>
+
+        <div className="mt-12 max-w-2xl mx-auto">
+          <BackupPanel />
         </div>
       </div>
     </div>
