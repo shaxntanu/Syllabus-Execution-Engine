@@ -13,12 +13,12 @@ export default function Filters() {
   ];
 
   return (
-    <div className="flex gap-3 flex-wrap">
+    <div className="flex gap-4 flex-wrap">
       {filters.map((f) => (
         <button
           key={f.value}
           onClick={() => setFilter(f.value)}
-          className={`px-5 py-2.5 rounded-lg font-medium transition-colors ${
+          className={`px-6 py-3 rounded-xl font-medium transition-colors ${
             filter === f.value
               ? "bg-blue-600 text-white"
               : "bg-gray-700 text-gray-300 hover:bg-gray-600"
