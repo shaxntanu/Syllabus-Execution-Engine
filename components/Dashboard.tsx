@@ -67,6 +67,12 @@ export default function Dashboard() {
             >
               🎯 Focus Mode
             </button>
+            <button
+              onClick={() => useStore.getState().forceRefresh()}
+              className="px-5 py-2.5 bg-yellow-600 hover:bg-yellow-700 text-white font-medium rounded-lg transition-colors"
+            >
+              🔄 Refresh Data
+            </button>
           </div>
 
           <div className="space-y-6 w-full max-w-6xl">

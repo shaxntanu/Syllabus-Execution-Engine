@@ -30,4 +30,5 @@ export interface AppState {
   setFocusMode: (enabled: boolean) => void;
   importBackup: (data: string) => void;
   resetState: () => void;
+  forceRefresh: () => void;
 }

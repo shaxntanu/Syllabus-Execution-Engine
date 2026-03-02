@@ -212,6 +212,17 @@ export const useStore = create<AppState>()(
           filter: "all",
           focusMode: false,
         }),
+
+      forceRefresh: () => {
+        // Clear localStorage and reset to latest initial data
+        localStorage.removeItem("exam-war-engine-storage");
+        set({
+          subjects: initialSubjects,
+          dailyProgress: {},
+          filter: "all",
+          focusMode: false,
+        });
+      },
     }),
     {
       name: "exam-war-engine-storage",
