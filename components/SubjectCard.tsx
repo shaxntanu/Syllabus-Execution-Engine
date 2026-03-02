@@ -1,6 +1,6 @@
 "use client";
 
-import { Subject, Topic } from "@/types";
+import { Subject } from "@/types";
 import { calculateSubjectProgress, isHighRisk } from "@/utils/calculations";
 import CountdownTimer from "./CountdownTimer";
 import TopicRow from "./TopicRow";
@@ -23,30 +23,30 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
   });
 
   return (
-    <div className="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
-      <div className="flex justify-between items-start mb-4">
-        <div>
-          <h2 className="text-2xl font-bold text-white mb-1">{subject.name}</h2>
-          <div className="text-sm text-gray-400">
-            Confidence: {subject.confidenceLevel}/5
+    <div className="bg-gray-800/50 backdrop-blur rounded-xl p-5 border border-gray-700 hover:border-gray-600 transition-colors">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
+        <div className="flex-1">
+          <div className="flex items-center gap-3 mb-2">
+            <h2 className="text-xl md:text-2xl font-bold text-white">{subject.name}</h2>
+            {highRisk && (
+              <span className="bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">
+                ⚠ HIGH RISK
+              </span>
+            )}
+          </div>
+          <div className="flex items-center gap-4 text-sm text-gray-400">
+            <span>Confidence: {subject.confidenceLevel}/5</span>
+            <span>•</span>
+            <span>{progress.toFixed(0)}% Complete</span>
           </div>
         </div>
-        <div className="text-right">
+        <div className="text-left md:text-right">
           <CountdownTimer examDate={subject.examDate} subjectName={subject.name} />
-          {highRisk && (
-            <div className="mt-2 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">
-              ⚠ HIGH RISK
-            </div>
-          )}
         </div>
       </div>
 
       <div className="mb-4">
-        <div className="flex justify-between text-sm text-gray-400 mb-1">
-          <span>Progress</span>
-          <span>{progress.toFixed(0)}%</span>
-        </div>
-        <div className="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
+        <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
           <div
             className="bg-gradient-to-r from-blue-500 to-purple-500 h-full transition-all duration-500"
             style={{ width: `${progress}%` }}
@@ -65,7 +65,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
           />
         ))}
         {filteredTopics.length === 0 && (
-          <div className="text-center text-gray-500 py-4">
+          <div className="text-center text-gray-500 py-4 text-sm">
             No topics match the current filter
           </div>
         )}
