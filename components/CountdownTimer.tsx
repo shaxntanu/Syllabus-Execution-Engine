@@ -24,7 +24,7 @@ export default function CountdownTimer({ examDate, subjectName, large = false }:
 
   return (
     <div className={large ? "text-center" : ""}>
-      <div className={`font-mono ${large ? "text-4xl" : "text-sm md:text-base"} font-bold ${colorClass}`}>
+      <div className={`font-mono ${large ? "text-4xl" : "text-base md:text-lg"} font-bold ${colorClass}`}>
         {countdown}
       </div>
       {large && (

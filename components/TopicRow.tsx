@@ -11,45 +11,47 @@ interface TopicRowProps {
 
 export default function TopicRow({ topic, onToggleDone, onToggleWeak, onSetPriority }: TopicRowProps) {
   const priorityColors = {
-    high: "border-red-500/50",
-    medium: "border-yellow-500/50",
-    low: "border-green-500/50",
+    high: "border-red-500/40",
+    medium: "border-yellow-500/40",
+    low: "border-green-500/40",
   };
 
   return (
     <div
-      className={`flex items-center gap-3 p-3 rounded-lg bg-gray-700/30 border ${priorityColors[topic.priority]} transition-all hover:bg-gray-700/50`}
+      className={`flex flex-col sm:flex-row sm:items-center gap-3 p-4 rounded-xl bg-gray-700/30 border ${priorityColors[topic.priority]} transition-all hover:bg-gray-700/50`}
     >
-      <input
-        type="checkbox"
-        checked={topic.done}
-        onChange={onToggleDone}
-        className="w-4 h-4 cursor-pointer accent-blue-500"
-      />
-      
-      <span className={`flex-1 text-sm md:text-base ${topic.done ? "line-through text-gray-500" : "text-gray-200"}`}>
-        {topic.name}
-      </span>
+      <div className="flex items-center gap-3 flex-1 min-w-0">
+        <input
+          type="checkbox"
+          checked={topic.done}
+          onChange={onToggleDone}
+          className="w-5 h-5 cursor-pointer accent-blue-500 flex-shrink-0"
+        />
+        
+        <span className={`text-base ${topic.done ? "line-through text-gray-500" : "text-gray-200"} break-words`}>
+          {topic.name}
+        </span>
+      </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3 sm:ml-auto flex-shrink-0">
         <button
           onClick={onToggleWeak}
-          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+          className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
             topic.weak
               ? "bg-orange-500 text-white"
               : "bg-gray-600 text-gray-300 hover:bg-gray-500"
           }`}
         >
-          {topic.weak ? "⚠" : "Mark Weak"}
+          {topic.weak ? "⚠ Weak" : "Mark Weak"}
         </button>
 
         <select
           value={topic.priority}
           onChange={(e) => onSetPriority(e.target.value as "high" | "medium" | "low")}
-          className="bg-gray-600 text-gray-200 px-2 py-1 rounded text-xs border border-gray-500 cursor-pointer"
+          className="bg-gray-600 text-gray-200 px-3 py-1.5 rounded-lg text-sm border border-gray-500 cursor-pointer"
         >
           <option value="high">High</option>
-          <option value="medium">Med</option>
+          <option value="medium">Medium</option>
           <option value="low">Low</option>
         </select>
       </div>
