@@ -177,9 +177,9 @@ export const useStore = create<AppState>()(
           }
 
           // Ensure all topics have required properties
-          const validatedSubjects = subjects.map(subject => ({
+          const validatedSubjects = subjects.map((subject: any) => ({
             ...subject,
-            topics: subject.topics.map(topic => ({
+            topics: subject.topics.map((topic: any) => ({
               id: topic.id || `topic-${Date.now()}-${Math.random()}`,
               name: topic.name || "Unnamed Topic",
               done: Boolean(topic.done),
