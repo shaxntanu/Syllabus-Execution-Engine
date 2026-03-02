@@ -19,19 +19,19 @@ export default function Dashboard() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-900 py-20">
-      <div className="w-full px-8 md:px-16 lg:px-24">
-        <div className="max-w-7xl mx-auto">
-          <header className="text-center mb-24">
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center py-16">
+      <div className="w-full max-w-none px-8 md:px-16 lg:px-24">
+        <div className="flex flex-col items-center w-full">
+          <header className="text-center mb-20 w-full">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-8">⚔️ Exam War Engine</h1>
             <p className="text-gray-400 text-lg">Strategic exam preparation system</p>
           </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-24">
-            <div className="bg-gray-800/50 backdrop-blur rounded-3xl p-12 border border-gray-700">
-              <div className="flex justify-between items-start mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 w-full max-w-7xl">
+            <div className="bg-gray-800/50 backdrop-blur rounded-lg p-10 border border-gray-700">
+              <div className="flex justify-between items-start mb-6">
                 <div>
-                  <div className="text-sm text-gray-400 mb-4">Overall Progress</div>
+                  <div className="text-sm text-gray-400 mb-3">Overall Progress</div>
                   <div className="text-4xl font-bold text-white">{overallProgress.toFixed(0)}%</div>
                 </div>
                 <div className="text-right text-sm text-gray-400">
@@ -46,11 +46,11 @@ export default function Dashboard() {
               </div>
             </div>
 
-            <div className="bg-gray-800/50 backdrop-blur rounded-3xl p-12 border border-gray-700">
-              <div className="text-sm text-gray-400 mb-4">Next Exam</div>
+            <div className="bg-gray-800/50 backdrop-blur rounded-lg p-10 border border-gray-700">
+              <div className="text-sm text-gray-400 mb-3">Next Exam</div>
               {nextExam ? (
                 <>
-                  <div className="text-2xl font-bold text-white mb-6">{nextExam.name}</div>
+                  <div className="text-2xl font-bold text-white mb-4">{nextExam.name}</div>
                   <CountdownTimer examDate={nextExam.examDate} subjectName={nextExam.name} />
                 </>
               ) : (
@@ -59,29 +59,29 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 mb-24">
+          <div className="flex flex-wrap justify-center gap-4 mb-16 w-full">
             <Filters />
             <button
               onClick={() => setFocusMode(true)}
-              className="px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-medium rounded-2xl transition-colors"
+              className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-colors"
             >
               🎯 Focus Mode
             </button>
             <button
               onClick={() => useStore.getState().forceRefresh()}
-              className="px-8 py-4 bg-yellow-600 hover:bg-yellow-700 text-white font-medium rounded-2xl transition-colors"
+              className="px-6 py-3 bg-yellow-600 hover:bg-yellow-700 text-white font-medium rounded-lg transition-colors"
             >
               🔄 Refresh Data
             </button>
           </div>
 
-          <div className="space-y-12 mb-32">
+          <div className="space-y-8 w-full max-w-7xl mb-20">
             {subjects.map((subject) => (
               <SubjectCard key={subject.id} subject={subject} />
             ))}
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="w-full max-w-4xl">
             <BackupPanel />
           </div>
         </div>

@@ -18,7 +18,7 @@ export default function TopicRow({ topic, onToggleDone, onToggleWeak, onSetPrior
 
   return (
     <div
-      className={`flex flex-col sm:flex-row sm:items-center gap-4 p-6 rounded-2xl bg-gray-700/30 border ${priorityColors[topic.priority]} transition-all hover:bg-gray-700/50`}
+      className={`flex flex-col sm:flex-row sm:items-center gap-4 p-5 rounded-lg bg-gray-700/30 border ${priorityColors[topic.priority]} transition-all hover:bg-gray-700/50`}
     >
       <div className="flex items-center gap-4 flex-1 min-w-0">
         <input
@@ -33,10 +33,10 @@ export default function TopicRow({ topic, onToggleDone, onToggleWeak, onSetPrior
         </span>
       </div>
 
-      <div className="flex items-center gap-4 sm:ml-auto flex-shrink-0">
+      <div className="flex items-center gap-3 sm:ml-auto flex-shrink-0">
         <button
           onClick={onToggleWeak}
-          className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
             topic.weak
               ? "bg-orange-500 text-white"
               : "bg-gray-600 text-gray-300 hover:bg-gray-500"
@@ -48,7 +48,7 @@ export default function TopicRow({ topic, onToggleDone, onToggleWeak, onSetPrior
         <select
           value={topic.priority}
           onChange={(e) => onSetPriority(e.target.value as "high" | "medium" | "low")}
-          className="bg-gray-600 text-gray-200 px-4 py-2.5 rounded-xl text-sm border border-gray-500 cursor-pointer"
+          className="bg-gray-600 text-gray-200 px-3 py-2 rounded-lg text-sm border border-gray-500 cursor-pointer"
         >
           <option value="high">High</option>
           <option value="medium">Medium</option>
